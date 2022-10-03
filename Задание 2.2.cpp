@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <windows.h>
 #include <vector>
 using namespace std;
 
@@ -10,6 +11,8 @@ using namespace std;
  * и вывести потом целиком из буфера. (способ медленный но надежный))
   */
 int main() {
+//    SetConsoleCP(1251);
+//    SetConsoleOutputCP(1251);
     setlocale(LC_ALL,"RUS");
 
     ifstream inFile;
@@ -19,18 +22,15 @@ int main() {
     inFile.open(fileName,ios::binary);
 
     if (inFile.is_open()) {
-        vector<char> buffer;
         cout << "\nText file '" << fileName << "' is found:\n";
         cout << "----------------------------------------\n\n";
-        char oneChar[2];
-        if (inFile.is_open()) {
-            while (true) {
-                inFile.read(oneChar, 1);
-                if (inFile.eof()) break;
-                buffer.push_back(oneChar[0]);
-            }
+        char buff[32];
+        while (!inFile.eof()) {
+            inFile.read(buff, sizeof (buff) - 1);
+            buff[inFile.gcount()] = 0;
+            cout << buff;
         }
-        for (char i : buffer) cout << i;
+        cout << endl;
         inFile.close();
     } else {
         cerr << "File '" << fileName << "' was not found.\n";
