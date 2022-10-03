@@ -4,12 +4,6 @@
 #include <vector>
 using namespace std;
 
-/**
- * Это решение открывает текстовый файл как бинарный и считывает из него по
- * одному символу пока не закончится сам файл, далее выводит в консоль. Выводить
- * можно сразу по символьно (после считывания), а можно накопить все в буфер
- * и вывести потом целиком из буфера. (способ медленный но надежный))
-  */
 int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
@@ -21,18 +15,17 @@ int main() {
     cin >> fileName;
     inFile.open(fileName,ios::binary);
 
-    //string buffer;
+    string buffer;
     if (inFile.is_open()) {
         cout << "\nText file '" << fileName << "' is found:\n";
         cout << "----------------------------------------\n\n";
-        char buff[33];
+        char buff[60];
         while (!inFile.eof()) {
             inFile.read(buff, sizeof (buff) - 1);
             buff[inFile.gcount()] = 0;
-            cout << buff;
-            //buffer += buff;
+            buffer.append(buff);
         }
-        //cout << buffer << endl;
+        cout << buffer << endl;
         cout << endl;
         inFile.close();
     } else {
