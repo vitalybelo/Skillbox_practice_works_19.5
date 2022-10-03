@@ -11,8 +11,9 @@ using namespace std;
  * и вывести потом целиком из буфера. (способ медленный но надежный))
   */
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+
+//    SetConsoleCP(1251);
+//    SetConsoleOutputCP(1251);
     setlocale(LC_ALL,"RUS");
 
     ifstream inFile;
