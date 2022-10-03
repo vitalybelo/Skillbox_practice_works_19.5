@@ -21,15 +21,18 @@ int main() {
     cin >> fileName;
     inFile.open(fileName,ios::binary);
 
+    //string buffer;
     if (inFile.is_open()) {
         cout << "\nText file '" << fileName << "' is found:\n";
         cout << "----------------------------------------\n\n";
-        char buff[32];
+        char buff[33];
         while (!inFile.eof()) {
             inFile.read(buff, sizeof (buff) - 1);
             buff[inFile.gcount()] = 0;
             cout << buff;
+            //buffer += buff;
         }
+        //cout << buffer << endl;
         cout << endl;
         inFile.close();
     } else {
